@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>HTML及CSS模拟报纸排版</title>
+	<style media="screen">
+
+	/**************reset************/
+	html {font-family: "Microsoft YaHei","Segoe UI", Segoe, Tahoma, Arial, Verdana, sans-serif;font-size: 14px;}
+	body,p{margin: 0;}
+	* {box-sizing: border-box;}
+	img{border: 0;}
+	.l {float: left;}
+	.r {float: right;}
+	.l0{left: 0px;}
+	.r0{right: 0px;}
+	.dib {display: inline-block;}
+	.margin-b40 {margin-bottom: 40px;}
+	.border-b {border-bottom: 2px solid #938e8c;}
+	.padding {padding: 10px;}
+	.padding-t30 {padding-top: 30px;}
+	.padding-t50 {padding-top: 50px;}
+	.fix {overflow: auto;zoom: 1;}
+	/**************reset end************/
+
+	/****************变量*************/
+
+	.D3T {color: #D35E5F;}
+	.D3B {background-color: #D35E5F;}
+	.FC67{color: #676767;}
+	.FS12{font-size: 12px;}
+	.FS16{font-size: 16px;}
+	.FS20{font-size:20px;}
+	.FS24{font-size:24px;}
+
+	/*************变量end*************/
+
+	/*************common*************/
+
+	/*下划线*/
+	.line-b{text-decoration:underline;}
+	.ti12{text-indent: 24px;}/*首行缩进*/
+	.border-b2{border-bottom: 2px solid #111;}
+	/*************common end*************/
+
+	/***********container************/
+
+	.container {
+		width: 980px;
+		height: 1386px;
+		margin: 0 auto;
+		padding: 0 44px;
+	}
+
+	.content{
+		padding-bottom: 40px;
+		border-bottom: 1px solid #938e8c;
+	}
+	.header {
+		/*height: 50px;*/
+		/*border: 1px solid blue;*/
+	}
+
+	.header a {
+		background-color: #D35E5F;
+		color: #fff;
+		text-decoration: none;
+		font-size: 12px;
+		padding: 52px 5px 5px 5px;
+	}
+
+	.header span {
+		display: inline-block;
+		padding: 52px 0px 5px 0px;
+	}
+	.footer {
+		height: 50px;
+	}
+	/********container end************/
+
+	/*content wwh-top*/
+	.img-lr{
+		position: relative;
+		width: 	641px;
+		height: 301px;
+	}
+	.img-lr img{
+		width: 100%;
+		height: 301px;
+	}
+	.filter-l,.filter-r{
+		position: absolute;
+		width: 191px;
+		height: 301px;
+		opacity: 0.4;
+		display: inline-block;
+	}
+	.filter-l{background-color: #2A503D;}
+	.filter-r{background-color: #D35E5F;}
+
+	.wwh{
+		position: relative;
+		width: 203px;
+		height: 301px;
+		border-top: 2px solid #cc8091;
+
+	}
+	.wwh > .ww1{
+		width: 70px;
+	}
+	.wwh  > .ww2{
+		width: 136px;
+	}
+	/*.wwh > .border-b2{
+	margin: 10px 0px;
+	}*/
+	.wwh > .tlag{font-size: 108px;color:#75b86b;}
+	.wwh > .tlast span:first-child{font-size: 55px;color:#cc8091;float: left;}
+	.wwh > .tlast span:last-child{float: left;margin-left: 5px;display: inline-block;padding-top: 16px;}
+	.wwh > .tlast span:last-child > p:first-child{font-size: 21px;color:#cc8091;float: left;}
+	.wwh-top{overflow: hidden;}
+
+	/*wwh-bottom*/
+	.wwh-btm{width: 641px;}
+	.what{width: 40%;}
+	.when{width: 30%;}
+	.how{width: 30%;}
+	.wwh-btm > div{float: left;padding-right: 30px;}
+	.btm-fb16{font-size: 16px;font-weight: bold;text-decoration: underline;padding: 30px 0 10px 0px;}
+	.what p:first-child{color:#458E5B;}
+	.when p:first-child{color:#D09C50;}
+	.how p:first-child{color:#CE707B;}
+	.what p:last-child,.when p:last-child,.how p:last-child{font-size: 12px;line-height: 16px;opacity: 0.7;}
+
+
+	/*content-tb*/
+	.tb-l{width: 415px;}
+	.tb-r{width: 458px;overflow: hidden;}
+	.l-top{padding: 5px 5px 15px 5px;margin-bottom: 10px;border-bottom: 2px solid #11456b;}
+	.eng em{font-size: 70px;margin-right: 15px;display: inline-block;font-family: '黑体';font-weight: bold;color:#f5e327;}
+	.eng span{font-size: 40px;font-family: '黑体';font-weight: bold;color:#11456b;}
+	.l-top p:last-child{font-size: 33px;color:#11456b;font-family: '黑体';font-weight: bold;}
+	.l-bt{font-size: 12px;color:#767777;font-family: '宋体';}
+	.bt-font span:first-child{font-size: 70px;font-family: 'Microsoft YaHei';color:#f5e327;line-height: 70px;}
+	.tb-line{line-height: 16px;}
+	.l-bt img{width: 170px;margin: 10px 0px 10px 10px;}
+	.r-top{position:relative;margin-bottom: 15px;}
+	.r-top img{width: 458px;height: 260px;}
+
+/*rfilter*/
+	.rfilter,.tfilter{position: absolute;bottom:0px;width: 548px;height: 61px;}
+	.rfilter{color:#fff; z-index: 2;}
+	.tfilter{background-color: #000;opacity: 0.4;z-index: 1;}
+	.rfilter span{font-size: 26px;color:#fff;font-family: 'Microsoft YaHei';opacity: 1;}
+	.rfilter div{padding: 5px 10px;margin: 10px 0px 5px 50px;border-left: 3px solid #72b16a;}
+	.rfilter em{font-size: 12px;color:#72b16a;font-family: 'Microsoft YaHei';}
+	.r-btm{height: 320px;background-color: #EEEED7;}
+	.footer a{text-decoration: none;}
+	.btm-top{color:#5a5b5b;padding: 35px 35px 10px 35px;}
+	.btm-top p{margin-bottom: 14px;}
+	.btm-top em{font-size: 12px;}
+	.three{width: 20px;height: 20px;display: inline-block;background-image: url('./ponter.png');background-repeat: no-repeat;background-position: 0px 2px;}
+
+	/*btm-b*/
+	.btmb-l{width: 260px;height: 160px; background-color: #D35E5F;color: #fff;padding: 10px; overflow: hidden;}
+
+	.o{font-size: 110px;font-family: 'Microsoft YaHei';width: 30%;}
+	.btmb-l span:last-child{display: inline-block;}
+	.or{width: 68%; padding: 10px;border-left: 2px solid #fff;}
+	.btmb-l span:last-child > p:first-child{font-size: 21px;font-family: '黑体';margin-bottom: 6px;}
+	.btmb-l span:last-child > p:last-child{font-size: 12px;font-family: '黑体';margin-bottom: 6px;}
+	.btmb-r{width: 196px;height: 160px;padding: 20px;}
+	.dou{font-size: 24px;color:#d45d5c;font-family: '黑体';}
+	.btmb-r em{color:#5a5b5b;font-size: 14px;font-family: '黑体';}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="header border-b margin-b40 fix">
+			<div class="l"><a href="http://www.xiaoluo.win" class='dib'>www.xiaoluo.win</a></div>
+			<div class="r"><span class="D3T FS12">2016.06</span></div>
+		</div>
+		<div class="content">
+			<div class="content-top fix">
+				<div class="fix wwh-top">
+					<div class="img-lr l">
+						<div class="filter-l"></div>
+						<div class="filter-r r0"></div>
+						<img src="pic2.png" alt="">
+					</div>
+					<div class="wwh r">
+						<div class="border-b2 ww1"><strong class="FS24">A</strong><span class="FS20">BOUT</span></div>
+						<div class="border-b2 ww2"><strong class="FS24">T</strong><span class="FS20">ECHNOLOGE</span></div>
+						<div class="FS12 FC67"><em>我们尽力保证课程内容的质但即使如此还是你的每一次思考和实践。</em></div>
+						<div class="tlag"><em>700</em></div>
+						<div class="tlast"><span>3.2</span><span><p>css</p><p>cccssscccsss</p></span></div>
+					</div>
+				</div>
+				<div class="wwh-btm">
+					<div class="what">
+						<p class="btm-fb16">What</p>
+						<p>
+							课程多数题目的解决方案都不是唯一的，这和我们在实际工作中的情况也是一致的。因此，我们的要求不仅仅是实现设计稿的效果，更是要多去思考不同的解决方案，评估不同方案的优劣，然后使用在该场景下最优雅的方式去实现。那些最终没有被我们采纳的方案，同样也可以帮助我们学到很多知识。所以，我们列出的参考资料未必是实现需求所必须的。有的时候，实现题目的要求很简单
+						</p>
+					</div>
+					<div class="when">
+						<p class="btm-fb16">When</p>
+						<p>
+							课程多数题目的解决方案都不是唯一的，这和我们在实际工作中的情况也是一致的。因此，我们的要求不仅仅是实现设计稿的效果，更是要多去思考不同的解决方案，评估不同方案的优劣，然后使用在该场景下最优雅的方式去实现。那些最终没有被我们采纳的方案，同样也可以帮助我们学到很多知识。所以，我们列出的参考资料未必是实现需求所必须的。
+						</p>
+					</div>
+					<div class="how">
+						<p class="btm-fb16">How</p>
+						<p>
+							课程多数题目的解决方案都不是唯一的，这和我们在实际工作中的情况也是一致的。因此，我们的要求不仅仅是实现设计稿的效果，更是要多去思考不同的解决方案，评估不同方案的优劣
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="content-tb fix">
+				<div class="tb-l l">
+					<div class="l-top">
+						<p class='eng'><em>THE</em><span>TECHNOLOGE OF FRONT</span></p>
+						<p>前端技术领域</p>
+					</div>
+					<div class="l-bt">
+						<p class="bt-font">
+							<span class="l">前</span>
+							<span class="tb-line">
+								端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+								端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+								端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+								端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域。
+						</span>
+					</p>
+					<img src="pic3.png"  class="r" alt="">
+					<p class="tb-line ti12">
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域。
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域。
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域。
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+					</p>
+					<p class="tb-line ti12">
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域
+						端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域前端技术领域。
+					</p>
+					</div>
+				</div>
+				<div class="tb-r r">
+					<div class="r-top">
+						<div class="tfilter"></div>
+						<div class="rfilter">
+							<div><span>前端技术</span> <em>前端技术前端技术</em></div>
+						</div>
+						<img src="pic3.jpg" alt="">
+					</div>
+					<div class="r-btm">
+						<div class="btm-top FS16">
+							<p><i class="three"></i><span>前端技术前端技术</span><span>....................................</span><em>前端</em></p>
+							<p><i class="three"></i><span>前端技术前端技术前端技术前端技术</span><span>................</span><em>前端</em></p>
+							<p><i class="three"></i><span>前端技术前端技术</span><span>................</span><em>前端</em></p>
+						</div>
+						<div class="btm-b ">
+							<div class="btmb-l fix l">
+								<span class="o dib ">0</span>
+								<span class="dib or">
+									<p class="dib">ONE TWO <br>THREE FORE FIVE</p>
+									<p class="dib">welcome to bei beijing welcome to beijing</p>
+								</span>
+							</div>
+							<div class="btmb-r r">
+									<p>
+										<span class="dou">"</span>
+										<em >welcome to bei beijing welcome to beijing welcome to bei beijing welcome to beijing</em>
+										<span class="dou">"</span>
+									</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<span class="r"><a class="dib D3T FS12" href="http://www.xiaoluo.win">www.xiaoluo.win</a></span>
+		</div>
+	</div>
+</body>
+
+</html>

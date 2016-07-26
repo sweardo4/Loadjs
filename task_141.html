@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>垂直居中</title>
+	<style media="screen">
+		html {
+			font-family: sans-serif;
+			font-size: 14px;
+			-ms-text-size-adjust: 100%;
+			-webkit-text-size-adjust: 100%;
+		}
+
+		body ,h3{
+			margin: 0;
+		}
+
+		* {
+			box-sizing: border-box;
+		}
+
+		.clearfix {
+			overflow: auto;
+			zoom: 1;
+		}
+
+		.container {
+			width: 100%;
+		}
+		/*container*/
+		.container{
+			border:1px solid #999;
+			height: 100vh;
+			position: relative;
+		}
+		.content{
+			position: absolute;
+			background-color: #ccc;
+			width: 400px;
+			height: 200px;
+			top:50%;
+			left: 50%;
+			transform: translate(-50%, -50%);/*我们可以使用transform 实现垂直居中  再位移自身高宽的一半就是了*/
+			overflow: hidden;
+		}
+
+		.left,.right{
+			width: 100px;
+			height: 100px;
+			background-color: #fc0;
+			border-radius: 50%;
+		}
+		.left{
+			position: absolute;
+			top:-50px;
+			left: -50px;
+		}
+		.right{
+			position: absolute;
+			right: -50px;
+			bottom: -50px;
+		}
+		.center{
+		 position: absolute;
+		 top: 50%;
+		 left: 50%;
+		 transform: translate(-50%, -50%);/*我们可以使用transform 实现垂直居中  再位移自身高宽的一半就是了*/
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="content">
+			<div class="left"></div>
+			<h3 class="center">垂直居中</h3>
+			<div class="right"></div>
+		</div>
+	</div>
+</body>
+
+</html>

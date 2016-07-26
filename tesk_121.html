@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>tesk121</title>
+  <style media="screen">
+    /**********common******/
+
+    body {
+      font-size: 14px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      color: #333;
+      background-color: #fff;
+      line-height: 1.42857143;
+    }
+
+    body,
+    p,
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    tr td {
+      padding: 0;
+    }
+
+    .container {
+      width: 100%;
+      background-color: #fff;
+    }
+
+    .l {
+      float: left;
+    }
+
+    .r {
+      float: right;
+    }
+
+    .padding {
+      padding: 10px;
+    }
+
+    .margin {
+      margin: 10px;
+    }
+
+    .margin-tb {
+      margin: 10px 0px;
+    }
+
+    .padding-tb {
+      padding: 10px 0px;
+    }
+
+    .margin-b {
+      margin: 0px 0px 10px 0px;
+    }
+
+    .content {
+      padding: 10px;
+    }
+
+    img {
+      border: 0;
+    }
+    /*首行缩进*/
+
+    .ti {
+      text-indent: 28px;
+    }
+
+    .center {
+      text-align: center;
+    }
+    /******变量******/
+    /*副标题*/
+
+    .c68 {
+      color: #6C684D;
+    }
+    /*时间作者*/
+
+    .c70 {
+      color: #6C7073;
+    }
+
+    .c97 {
+      color: #9C979B;
+    }
+
+    .f2 {
+      color: #F2FFFF;
+    }
+
+    .btnD0{background-color: #3355D0}
+    .btnD0:hover{
+      background-color: #4159D7;
+    }
+
+    .cpo{cursor:pointer}
+    /*************header*************/
+
+    .header {
+      width: 100%;
+      height: 100px;
+      background-color: #333333;
+      color: #fff;
+    }
+
+    .nav li {
+      float: left;
+      list-style: none;
+      padding: 10px;
+    }
+
+    .nav li a {
+      text-decoration: none;
+    }
+    /*****content******/
+
+    .img div {
+      width: 20%;
+      text-align: center;
+      border: 1px solid #CBCBCB;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .img div p {
+      margin-bottom: 10px;
+    }
+
+    .img img {
+      width: 90%;
+    }
+    /*table*/
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      /*合并双边框a*/
+    }
+
+    .table td,
+    .table th {
+      border: 1px solid #eceeef;
+      padding: 10px;
+    }
+
+    .table thead tr {
+      background-color: #333;
+      color: #fff;
+    }
+
+    .table thead th {
+      vertical-align: bottom;
+      border: 1px solid #999;
+    }
+    /*form table*/
+
+    form table{
+      margin-left: 20%;
+    }
+    form table tr td {
+      padding:5px 10px;
+    }
+    form .btn{
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      color: #fff;
+    }
+    /*****footer******/
+
+    .footer{
+        background-color: #333;
+        text-align: center;
+        color: #fff;
+        height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='container'>
+    <div class="header">
+      <h1 class="l margin-tb">这是标题一级</h1>
+      <div class="nav r">
+        <ul>
+          <li><a href="" class="f2">这是导航连接1</a></li>
+          <li><a href="" class="f2">这是导航连接1</a></li>
+          <li><a href="" class="c97">这是导航连接1</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="content">
+
+      <h2 class="margin-tb">文章以及标题</h2>
+      <h3 class="c68 margin-tb">文章二级标题</h3>
+      <p class="c70 margin-tb"><span>文章作者</span> <span>文章发表时间</span></p>
+      <p class="ti">是很长很长的段落这是很长很长的段落这是很长很,长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很长很长的段落这是很<strong>这是粗梯子</strong>长很长的段落这是很长很长的段落这是很长很长的段,落这是很长很长的段落
+        <br> 这是很长很长的段落这是很长很长的段落这是很长很长,的段落这是很长很长的段落这是很长很长
+        <br>的段落这是很,长很长的段落这是很长很长的段落,<a href="">这是短路中的链接</a>,这是很长很长的段落这是很长很,长的段落这是<em>这是斜体字</em>很长很长的段落这是很长很长的段落</p>
+      <div>
+        <img src="img/pic1.jpg" alt="">
+      </div>
+      <ul>
+        <li>列表项目一</li>
+        <li>列表项目一</li>
+        <li>列表项目一</li>
+        <li>列表项目一</li>
+      </ul>
+    </div>
+    <div class="content">
+      <h2>图片</h2>
+      <div class="img">
+        <div>
+          <p>好看的图片1</p>
+          <img src="img/pic1.jpg" alt="">
+        </div>
+        <div>
+          <p>好看的图片1</p>
+          <img src="img/pic1.jpg" alt="">
+        </div>
+        <div>
+          <p>好看的图片1</p>
+          <img src="img/pic1.jpg" alt="">
+        </div>
+        <div>
+          <p>好看的图片1</p>
+          <img src="img/pic1.jpg" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="content ">
+      <h2 class="margin-tb">文章以及标题</h2>
+      <h3 class="c68 margin-tb">文章二级标题</h3>
+      <p class="c70 margin-tb"><span>文章作者</span> <span>文章发表时间</span></p>
+
+
+      <p><span>下面是一个表格</span></p>
+      <table class="table" cellspacing="0">
+        <thead>
+          <tr>
+            <th>表头</th>
+            <th>表头</th>
+            <th>表头</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>单元格1</td>
+            <td>单元格1</td>
+            <td><a href="">option</a></td>
+          </tr>
+          <tr>
+            <td>单元格1</td>
+            <td>单元格1</td>
+            <td><a href="">option</a></td>
+          </tr>
+          <tr>
+            <td>单元格1</td>
+            <td>单元格1</td>
+            <td><a href="">option</a></td>
+          </tr>
+          <tr>
+            <td>总计</td>
+            <td colspan="2">10000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 表单  -->
+    <div class="content">
+      <h2 class="margin-tb">以后这是侧栏标题</h2>
+      <h3 class="c68 margin-tb">文章二级标题</h3>
+      <form class="" action="index.html" method="post">
+        <table>
+          <tbody>
+            <tr>
+              <td class="r">请输入邮箱地址</td>
+              <td>
+                <input type="email" placeholder="这是一个文本输入框">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="c70">邮箱需要按章需要要安装要求格式输入</td>
+            </tr>
+            <tr>
+              <td class="r">请输入密码</td>
+              <td>
+                <input type="password">
+              </td>
+            </tr>
+            <tr>
+              <td class="r">请发重复输入密码</td>
+              <td>
+                <input type="password" placeholder="输入密码">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="c70">密码请为6-16位英文数字</td>
+            </tr>
+
+            <tr>
+              <td class="r">性别</td>
+              <td>
+                <input type="radio" name='sex' value='0'>男</input>
+                <input name='sex' type="radio">女</input>
+              </td>
+            </tr>
+            <tr>
+              <td class="r">
+                城市
+              </td>
+              <td>
+                <select class="" name="">
+                  <option value="">被谨防</option>
+                  <option value="">被谨防</option>
+                  <option value="">被谨防</option>
+                  <option value="">被谨防</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="r">爱好</td>
+              <td>
+                <input type="checkbox">篮球</input>
+                <input type="checkbox">乒乓球</input>
+                <input type="checkbox">name</input>
+                <input type="checkbox">篮球</input>
+              </td>
+            </tr>
+            <tr>
+              <td class="r">个人描述</td>
+              <td>
+                <textarea name="name" rows="4" cols="20"></textarea>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <input type="button" class='btn btnD0 cpo' value="确认提交">
+      </form>
+    </div>
+    <div class="footer">@版权所有</div>
+  </div>
+
+</body>
+
+</html>
