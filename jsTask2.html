@@ -34,11 +34,13 @@
       */
       var aqiList = document.getElementById('aqi-list')
       for (var i = 0; i < aqiData.length; i++) {
+        if(aqiData[i][1] > 60 || aqiData[i][1] == 60){
 
-        var aqiLi = document.createElement('li')
-        var text = '第' + i + '名:' + aqiData[i][0] + ',' + aqiData[i][1]
-        aqiLi.textContent = text
-        aqiList.appendChild(aqiLi)
+          var aqiLi = document.createElement('li')
+          var text = '第' + i + '名:' + aqiData[i][0] + ',' + aqiData[i][1]
+          aqiLi.textContent = text
+          aqiList.appendChild(aqiLi)
+        }
       }
     })();
   </script>
