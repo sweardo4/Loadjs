@@ -30,25 +30,17 @@
 	<!--  -->
 
 	<style media="screen">
-		li.show:first-child {
-			width: 10px;
-			height: 500px;
-			background-color: #000000;
+		body {
+			margin: 0;
 		}
 
-		li.show:last-child {
-			width: 10px;
-			height: 300px;
-			background-color: #ff0;
-			margin-top: 200px;
-		}
-
-		.show {
-			float: left;
+		* {
+			box-sizing: border-box;
 		}
 
 		ul li {
 			list-style: none;
+			border: 1px solid #fff;
 		}
 	</style>
 	<div class="aqi-chart-wrap">
@@ -57,17 +49,19 @@
 
 	<script type="text/javascript">
 		/* 数据格式演示
-		var aqiSourceData = {
-		  "北京": {
-		    "2016-01-01": 10,
-		    "2016-01-02": 10,
-		    "2016-01-03": 10,
-		    "2016-01-04": 10
-		  }
-		};
-		*/
+						var aqiSourceData = {
+						  "北京": {
+						    "2016-01-01": 10,
+						    "2016-01-02": 10,
+						    "2016-01-03": 10,
+						    "2016-01-04": 10
+						  }
+						};
+						*/
 
 		// 以下两个函数用于随机模拟生成测试数据
+
+		/*********helperjs**********/
 		function getDateStr(dat) {
 			var y = dat.getFullYear();
 			var m = dat.getMonth() + 1;
@@ -90,6 +84,13 @@
 			}
 			return returnData;
 		}
+
+		function addEvent(o, s, fn) {
+			o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
+			return o;
+
+		}
+		/*********helperjs end**********/
 
 		var aqiSourceData = {
 			"北京": randomBuildData(500),
@@ -117,35 +118,30 @@
 		/**
 		 * 渲染图表
 		 */
-
-		function addEvent(o,s,fn){
-				o.attachEvent?o.attachEvent('on'+s,fn):o.addEventListener(s,fn,false);
-				return o;
-
-		}
-
 		function renderChart(data, option) {
+			// 天
 			function doday(data) {
 				var length = data.length; //考虑自适应时可以用到
 				var aqiWrap = document.querySelector('.aqi-chart-wrap');
 				var ul = document.createElement('ul');
 				for (key in data) {
 					var li = document.createElement('li'),
-					    num = parseInt(data[key]),
-					  	bgcolor = returnColor(num);
+						num = parseInt(data[key]),
+						bgcolor = returnColor(num);
 					li.style.backgroundColor = bgcolor;
 					li.style.width = '10px';
 					li.style.height = num + 'px';
 					li.style.cssFloat = 'left';
-					li.style.marginTop = (500 - num) +'px';
+					li.style.marginTop = (500 - num) + 'px';
 					ul.appendChild(li);
 				}
 				aqiWrap.appendChild(ul);
 			}
-			function doweek(data) {
-			}
+			// 周
+			function doweek(data) {}
 
 
+			// 月
 			switch (option) {
 				case '天':
 					doday(data);
@@ -162,23 +158,19 @@
 			}
 		}
 
-		renderChart(aqiSourceData['北京'], '天')
+		renderChart(aqiSourceData['上海'], '天')
 
 		//根据空气质量值返回不同的颜色
 		function returnColor(num) {
-			if(num > 400) {
+			if (num > 400) {
 				return '#000000';
-			}
-			else if(num > 300) {
+			} else if (num > 300) {
 				return '#7D0478';
-			}
-			else if(num > 200) {
+			} else if (num > 200) {
 				return '#FE0002';
-			}
-			else if(num > 100) {
+			} else if (num > 100) {
 				return '#0202FF';
-			}
-			else if(num > 0){
+			} else if (num > 0) {
 				return '#047F00';
 			}
 		}
