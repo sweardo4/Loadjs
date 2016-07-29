@@ -1,5 +1,10 @@
 ##learn
 ###导航链接
 
-[报纸版面](http://www.xiaoluo.win/Loadjs/task_161.html)
-[技术官网](http://www.xiaoluo.win/Loadjs/task_171.html)
+#html css
+[三栏布局](http://www.xiaoluo.win/Loadjs/hctask/task3.html)
+[垂直水平居中](http://www.xiaoluo.win/Loadjs/hctask/task4.html)
+[报纸版面](http://www.xiaoluo.win/Loadjs/hctask/task6.html)
+[简易栅格系统](http://www.xiaoluo.win/Loadjs/hctask/task8.html)
+
+#js
