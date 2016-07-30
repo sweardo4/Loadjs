@@ -69,18 +69,23 @@ var pageState = {
 function renderChart(data, option) {
     var aqiWrap = document.querySelector('.aqi-chart-wrap');
     var ul = document.createElement('ul');
+
+    function createLi(num,width){
+        var li = document.createElement('li'),
+            bgcolor = returnColor(num);
+        li.style.backgroundColor = bgcolor;
+        li.style.width = width;
+        li.style.height = num + 'px';
+        li.style.cssFloat = 'left';
+        li.style.marginTop = (500 - num) + 'px';
+        return li;
+    }
     // 天
     function doday(data) {
         var length = data.length; //考虑自适应时可以用到
         for (key in data) {
-            var li = document.createElement('li'),
-                num = parseInt(data[key]),
-                bgcolor = returnColor(num);
-            li.style.backgroundColor = bgcolor;
-            li.style.width = '10px';
-            li.style.height = num + 'px';
-            li.style.cssFloat = 'left';
-            li.style.marginTop = (500 - num) + 'px';
+            var num = parseInt(data[key]);
+            var li = createLi(num,'10px');
             ul.appendChild(li);
         }
         aqiWrap.appendChild(ul);
@@ -90,13 +95,7 @@ function renderChart(data, option) {
         var newArr = weekAverage(7, data);
         for (var i = 0; i < newArr.length; i++) {
             var num = newArr[i];
-            var li = document.createElement('li'),
-                bgcolor = returnColor(num);
-            li.style.backgroundColor = bgcolor;
-            li.style.width = '20px';
-            li.style.height = num + 'px';
-            li.style.cssFloat = 'left';
-            li.style.marginTop = (500 - num) + 'px';
+            var li = createLi(num,'30px');
             ul.appendChild(li);
         }
         aqiWrap.appendChild(ul);
@@ -106,13 +105,7 @@ function renderChart(data, option) {
         var newArr = monthAverage(data)
         for (var i = 0; i < newArr.length; i++) {
             var num = newArr[i];
-            var li = document.createElement('li'),
-                bgcolor = returnColor(num);
-            li.style.backgroundColor = bgcolor;
-            li.style.width = '20px';
-            li.style.height = num + 'px';
-            li.style.cssFloat = 'left';
-            li.style.marginTop = (500 - num) + 'px';
+            var li = createLi(num,'50px');
             ul.appendChild(li);
         }
         aqiWrap.appendChild(ul);
@@ -238,7 +231,7 @@ function pageStateChange() {
 function initGraTimeForm() {
     var fgt = document.getElementById('form-gra-time');
     addEvent(fgt, 'click', function(e) {
-        if (pageState.nowGraTime != e.target.value) {
+        if (pageState.nowGraTime != e.target.value && e.target.value) {
             pageState.nowGraTime = e.target.value;
             pageStateChange()
         }
