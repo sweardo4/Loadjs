@@ -2,101 +2,95 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>响应式网格布局</title>
-  <link rel="stylesheet" href="../css/grid.css" media="screen" title="no title" charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>响应式网格布局</title>
+    <link rel="stylesheet" href="../css/grid.css" media="screen" title="no title" charset="utf-8">
 </head>
 
 <body>
+    <div class="container">
+        <div class="row show-grid">
+            <h1 class="col-md-12 col-sm-12">768px 992px 自适应</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row show-grid">
+            <div class="col-sm-6 col-md-6">6栏</div>
+            <div class="col-sm-6 col-md-6">6栏</div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-sm-2 col-md-2">2栏</div>
+            <div class="col-sm-2 col-md-2">2栏</div>
+            <div class="col-sm-2 col-md-2">2栏</div>
+            <div class="col-sm-2 col-md-2">2栏</div>
+            <div class="col-sm-2 col-md-2">2栏</div>
+            <div class="col-sm-2 col-md-2">2栏</div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+            <div class="col-sm-1 col-md-1">1栏</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row show-grid">
+            <h1 class="col-md-12">992px 自适应</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row show-grid ">
+            <div class="col-md-6">6栏</div>
+            <div class="col-md-6">6栏</div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-md-12">12栏</div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-md-10">10栏</div>
+            <div class="col-md-2">2栏</div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-md-3">2栏</div>
+            <div class="col-md-3">2栏</div>
+            <div class="col-md-3">2栏</div>
+            <div class="col-md-3">2栏</div>
 
-  <style media="screen">
-    h1 {
-      background-color: red;
-      margin: 0;
-      color: #fff;
-    }
-  </style>
-  <div class="container">
-    <div class="row show-grid">
-      <h1 class="col-md-12 col-sm-12">768px 992px 自适应</h1>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row show-grid">
-      <div class="col-sm-6 col-md-6">6栏</div>
-      <div class="col-sm-6 col-md-6">6栏</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-sm-2 col-md-2">2栏</div>
-      <div class="col-sm-2 col-md-2">2栏</div>
-      <div class="col-sm-2 col-md-2">2栏</div>
-      <div class="col-sm-2 col-md-2">2栏</div>
-      <div class="col-sm-2 col-md-2">2栏</div>
-      <div class="col-sm-2 col-md-2">2栏</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-      <div class="col-sm-1 col-md-1">1栏</div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row show-grid">
-      <h1 class="col-md-12">992px 自适应</h1>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row show-grid ">
-      <div class="col-md-6">6栏</div>
-      <div class="col-md-6">6栏</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-12">12栏</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-10">10栏</div>
-      <div class="col-md-2">2栏</div>
-    </div>
-    <div class="row show-grid">
-      <div class="col-md-3">2栏</div>
-      <div class="col-md-3">2栏</div>
-      <div class="col-md-3">2栏</div>
-      <div class="col-md-3">2栏</div>
+        </div>
+        <div class="row show-grid">
+            <div class="col-md-2">2栏</div>
+            <div class="col-md-2">2栏</div>
+            <div class="col-md-2">2栏</div>
+            <div class="col-md-2">2栏</div>
+            <div class="col-md-2">2栏</div>
+            <div class="col-md-2">2栏</div>
 
+        </div>
+        <div class="row show-grid ">
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+            <div class="col-md-1">1栏</div>
+        </div>
     </div>
-    <div class="row show-grid">
-      <div class="col-md-2">2栏</div>
-      <div class="col-md-2">2栏</div>
-      <div class="col-md-2">2栏</div>
-      <div class="col-md-2">2栏</div>
-      <div class="col-md-2">2栏</div>
-      <div class="col-md-2">2栏</div>
-
-    </div>
-    <div class="row show-grid ">
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-      <div class="col-md-1">1栏</div>
-    </div>
-  </div>
 
 
 </body>

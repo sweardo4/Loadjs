@@ -4,232 +4,72 @@
 <head>
 	<meta charset="UTF-8">
 	<title>任务17 复杂表单对象操作</title>
-</head>
-
-<body>
-	<fieldset id="form-gra-time">
-		<legend>请选择日期粒度：</legend>
-		<label>日
-			<input name="gra-time" value="day" type="radio" checked="checked">
-		</label>
-		<label>周
-			<input name="gra-time" value="week" type="radio">
-		</label>
-		<label>月
-			<input name="gra-time" value="month" type="radio">
-		</label>
-	</fieldset>
-
-	<fieldset>
-		<legend>请选择查看的城市：</legend>
-		<select id="city-select">
-			<option>北京</option>
-		</select>
-	</fieldset>
-
-	<!--  -->
-
+	<link rel="stylesheet" href="../css/grid.css" media="screen" title="no title" charset="utf-8">
 	<style media="screen">
 		body {
 			margin: 0;
+		}
+
+		ul {
+			padding: 0;
 		}
 
 		* {
 			box-sizing: border-box;
 		}
 
+		.aqi-chart-wrap,
+		ul {
+			overflow: auto;
+			zoom: 1;
+		}
+		ul{
+			text-align:center;
+			list-style-type:none;
+		}
 		ul li {
-			list-style: none;
 			border: 1px solid #fff;
+			display: inline;
 		}
 	</style>
-	<div class="aqi-chart-wrap">
+</head>
+
+<body>
+	<div class="container">
+		<h1>分别选择日期和城市可以得到相应空气质量图表数据</h1>
+		<div class="row">
+
+			<fieldset id="form-gra-time">
+				<legend>请选择日期粒度：</legend>
+				<label>日
+					<input name="gra-time" value="day" type="radio" checked="checked">
+				</label>
+				<label>周
+					<input name="gra-time" value="week" type="radio">
+				</label>
+				<label>月
+					<input name="gra-time" value="month" type="radio">
+				</label>
+			</fieldset>
+
+			<fieldset>
+				<legend>请选择查看的城市：</legend>
+				<select id="city-select">
+					<option>请选择城市</option>
+				</select>
+			</fieldset>
+		</div>
+
+		<!-- 渲染图表 -->
+		<div class="row">
+
+			<div class="aqi-chart-wrap">
+
+			</div>
+		</div>
 
 	</div>
-
-	<script type="text/javascript">
-		/* 数据格式演示
-						var aqiSourceData = {
-						  "北京": {
-						    "2016-01-01": 10,
-						    "2016-01-02": 10,
-						    "2016-01-03": 10,
-						    "2016-01-04": 10
-						  }
-						};
-						*/
-
-		// 以下两个函数用于随机模拟生成测试数据
-
-		/*********helperjs**********/
-		function getDateStr(dat) {
-			var y = dat.getFullYear();
-			var m = dat.getMonth() + 1;
-			m = m < 10 ? '0' + m : m;
-			var d = dat.getDate();
-			d = d < 10 ? '0' + d : d;
-			return y + '-' + m + '-' + d;
-		}
-
-		function randomBuildData(seed) {
-			var returnData = {};
-			var leng = 82;
-			var dat = new Date("2016-01-01");
-			var datStr = ''
-			for (var i = 1; i < leng; i++) {
-				datStr = getDateStr(dat);
-				returnData[datStr] = Math.ceil(Math.random() * seed);
-				returnData['length'] = leng;
-				dat.setDate(dat.getDate() + 1);
-			}
-			return returnData;
-		}
-
-		function addEvent(o, s, fn) {
-			o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
-			return o;
-
-		}
-		/*********helperjs end**********/
-
-		var aqiSourceData = {
-			"北京": randomBuildData(500),
-			"上海": randomBuildData(300),
-			"广州": randomBuildData(200),
-			"深圳": randomBuildData(100),
-			"成都": randomBuildData(300),
-			"西安": randomBuildData(500),
-			"福州": randomBuildData(100),
-			"厦门": randomBuildData(100),
-			"沈阳": randomBuildData(500)
-		};
-
-		console.log(aqiSourceData)
-
-		// 用于渲染图表的数据
-		var chartData = {};
-
-		// 记录当前页面的表单选项
-		var pageState = {
-			nowSelectCity: -1,
-			nowGraTime: "day"
-		}
-
-		/**
-		 * 渲染图表
-		 */
-		function renderChart(data, option) {
-			// 天
-			function doday(data) {
-				var length = data.length; //考虑自适应时可以用到
-				var aqiWrap = document.querySelector('.aqi-chart-wrap');
-				var ul = document.createElement('ul');
-				for (key in data) {
-					var li = document.createElement('li'),
-						num = parseInt(data[key]),
-						bgcolor = returnColor(num);
-					li.style.backgroundColor = bgcolor;
-					li.style.width = '10px';
-					li.style.height = num + 'px';
-					li.style.cssFloat = 'left';
-					li.style.marginTop = (500 - num) + 'px';
-					ul.appendChild(li);
-				}
-				aqiWrap.appendChild(ul);
-			}
-			// 周
-			function doweek(data) {}
-
-
-			// 月
-			switch (option) {
-				case '天':
-					doday(data);
-					break;
-
-				case '周':
-					doweek(data);
-					break;
-
-				case '月':
-					domonth(data);
-					break;
-				default:
-			}
-		}
-
-		renderChart(aqiSourceData['上海'], '天')
-
-		//根据空气质量值返回不同的颜色
-		function returnColor(num) {
-			if (num > 400) {
-				return '#000000';
-			} else if (num > 300) {
-				return '#7D0478';
-			} else if (num > 200) {
-				return '#FE0002';
-			} else if (num > 100) {
-				return '#0202FF';
-			} else if (num > 0) {
-				return '#047F00';
-			}
-		}
-
-
-		/**
-		 * 日、周、月的radio事件点击时的处理函数
-		 */
-		function graTimeChange() {
-			// 确定是否选项发生了变化
-			// 设置对应数据
-			// 调用图表渲染函数
-		}
-
-		/**
-		 * select发生变化时的处理函数
-		 */
-		function citySelectChange() {
-			// 确定是否选项发生了变化
-			// 设置对应数据
-			// 调用图表渲染函数
-		}
-
-		/**
-		 * 初始化日、周、月的radio事件，当点击时，调用函数graTimeChange
-		 */
-		function initGraTimeForm() {
-
-		}
-
-		/**
-		 * 初始化城市Select下拉选择框中的选项
-		 */
-		function initCitySelector() {
-			// 读取aqiSourceData中的城市，然后设置id为city-select的下拉列表中的选项
-
-			// 给select设置事件，当选项发生变化时调用函数citySelectChange
-
-		}
-
-		/**
-		 * 初始化图表需要的数据格式
-		 */
-		function initAqiChartData() {
-			// 将原始的源数据处理成图表需要的数据格式
-			// 处理好的数据存到 chartData 中
-		}
-
-		/**
-		 * 初始化函数
-		 */
-		function init() {
-			initGraTimeForm()
-			initCitySelector();
-			initAqiChartData();
-		}
-
-		init();
-	</script>
+	<script src="../js/task17.js" charset="utf-8"></script>
 </body>
 
 </html>

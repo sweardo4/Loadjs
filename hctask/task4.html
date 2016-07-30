@@ -12,7 +12,8 @@
 			-webkit-text-size-adjust: 100%;
 		}
 
-		body ,h3{
+		body,
+		h3 {
 			margin: 0;
 		}
 
@@ -29,46 +30,55 @@
 			width: 100%;
 		}
 		/*container*/
-		.container{
-			border:1px solid #999;
+
+		.container {
+			border: 1px solid #999;
 			height: 100vh;
 			position: relative;
 		}
-		.content{
+
+		.content {
 			position: absolute;
 			background-color: #ccc;
 			width: 400px;
 			height: 200px;
-			top:50%;
+			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%);/*我们可以使用transform 实现垂直居中  再位移自身高宽的一半就是了*/
+			transform: translate(-50%, -50%);
+			/*我们可以使用transform 实现垂直居中  再位移自身高宽的一半就是了*/
 			overflow: hidden;
 		}
 
-		.left,.right{
+		.left,
+		.right {
 			width: 100px;
 			height: 100px;
 			background-color: #fc0;
 			border-radius: 50%;
 		}
-		.left{
+
+		.left {
 			position: absolute;
-			top:-50px;
+			top: -50px;
 			left: -50px;
 		}
-		.right{
+
+		.right {
 			position: absolute;
 			right: -50px;
 			bottom: -50px;
 		}
-		.center{
-		 position: absolute;
-		 top: 50%;
-		 left: 50%;
-		 transform: translate(-50%, -50%);/*我们可以使用transform 实现垂直居中  再位移自身高宽的一半就是了*/
+
+		.center {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			/*我们可以使用transform 实现垂直居中  再位移自身高宽的一半就是了*/
 		}
 	</style>
 </head>
+
 <body>
 	<div class="container">
 		<div class="content">
