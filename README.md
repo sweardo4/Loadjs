@@ -8,3 +8,4 @@
 [简易栅格系统](http://www.xiaoluo.win/Loadjs/hctask/task8.html)
 #js
 [空气质量图表](http://www.xiaoluo.win/Loadjs/jstask/jsTask17.html)
+[js模拟队列](http://www.xiaoluo.win/Loadjs/jstask/jsTask18.html)
