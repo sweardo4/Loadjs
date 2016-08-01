@@ -1,279 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>实现一个复杂的页面</title>
-    <link href="../css/font-awesome.css" rel="stylesheet">
-    <style media="screen">
+  <meta charset="UTF-8">
+  <title>实现一个复杂的页面</title>
+  <link href="../css/font-awesome.css" rel="stylesheet">
+  <style media="screen">
 
-        /*base*/
-        html {font-family: "Microsoft YaHei","Segoe UI", Segoe, Tahoma, Arial, Verdana, sans-serif;font-size: 12px;}
-        body,p{margin: 0;}
-        .l{float: left;}
-        .r{float:right;}
-        .fix{overflow: auto;zoom:1;}
-        *{box-sizing: border-box;}
-        a{text-decoration: none;}
-        ul{list-style: none;color:#6D7F95;}
+  /*base*/
+  html {font-family: "Microsoft YaHei","Segoe UI", Segoe, Tahoma, Arial, Verdana, sans-serif;font-size: 12px;}
+  body,p{margin: 0;}
+  body{color:#777;}
+  .l{float: left;}
+  .r{float:right;}
+  .fix{overflow: auto;zoom:1;}
+  *{box-sizing: border-box;}
+  a{text-decoration: none;}
+  ul{list-style: none;color:#6D7F95;}
+  section{display: block;}
+  /*header*/
+  header{width: 100%;height: 50px;background-image: url('../img/bgtop9.png');}
+  header .top{margin-right: auto;margin-left: auto;padding: 10px 10%;}
+  header .right,header .left{display: inline-block; color: #fff;}
+  header .left{font-size: 25px;}
+  header .right{font-weight: bold;line-height: 35px;}
+  #search {margin:0px 15px;position: relative;}
+  #search input{border: 0px;height: 25px;border-radius: 10px;width: 320px;z-index: 1;padding-left: 30px;}
+  #search i{position: absolute; left: 10px;top:1px;z-index: 2;color:#999;}
+  #login i{padding: 0px 3px;font-size: 18px;}
+  #login button{background-image:url('../img/bgtop9.png');border: 0;color:#fff;padding: 0px;cursor: pointer;}
 
-        /*header*/
-        header{width: 100%;height: 50px;background-image: url('../img/bgtop9.png');}
-        header .top{margin-right: auto;margin-left: auto;padding: 10px 10%;}
-        header .right,header .left{display: inline-block; color: #fff;}
-        header .left{font-size: 25px;}
-        header .right{font-weight: bold;line-height: 35px;}
-        #search {margin:0px 15px;position: relative;}
-        #search input{border: 0px;height: 25px;border-radius: 10px;width: 320px;z-index: 1;}
-        #search i{position: absolute; left: 10px;top:1px;z-index: 2;color:#999;}
-        #login i{padding: 0px 3px;font-size: 18px;}
-        #login button{background-image:url('../img/bgtop9.png');border: 0;color:#fff;padding: 0px;cursor: pointer;}
+  /*sidebar-nav*/
+  .userimg{padding: 20px 40px;color:#6E8096;}
+  .userimg div:first-child span{display: inline-block; float: left;}
+  .userimg div:first-child span:last-child{padding:25px;color:#fff;font-weight: bold;}
+  .userimg div:last-child span{padding: 0px 20px; float: left;}
+  .userimg div:last-child span:first-child{border-right: 1px solid #666;}
+  .userimg div:last-child{margin: 20px 0px;}
+  .sidebar-nav{width: 240px; height: 1100px;background-color: #2B2E3D;}
+  .sidebar-nav{color: #6D7F95;}
+  .sidebar-nav section{height: 140px;}
+  .nav{padding: 0;}
+  .nav a{color:#6E8096;padding:10px 0px;display: inline-block;}
+  .nav a i{margin-right: 4px;}
+  .native{background-color: #373D4D;}
+  .native > a:first-child{color: #fff !important; }
+  .native-top{padding: 10px 0px 10px 40px ;}
+  .native ul{padding-left:20px;}
+
+  /*main*/
+  main{position: absolute;left:240px;right: 0px;background-color: #EEE;}
+  main .top{padding:10px 0px 10px 20px;color:#999;background-color: #fff;}
+  main .top span{margin-right: 5px;}
+  main .top span:last-child{color:#2189C0;}
+  main .content{margin:20px 40px 20px 40px;height: 900px;width: 1000px;}
+
+  /*search*/
+  .select-search,.history-inquiry a{background-color: #fff;margin-bottom: 20px;}
+
+  .select-search{padding: 20px; background-color: #fff;border: 1px solid #ccc;}
+  .select-search > .option {float: left; margin-left: 40px; color:#777;}
+  .select-search > .option:first-child span{margin-right: 8px;}
+  .relate {position: relative; padding-right: 40px;}
+  .relate p{margin-bottom: 4px;}
+  .relate p select,.four div select{width: 120px;}
+  .relate span{margin-left: 10px;}
+  .relate p:last-child{position: absolute;right: 0;top:14px;}
+  .relate p:last-child,#input input{cursor: pointer;}
+  .relate p:last-child span{display: inline-block;padding:3px 4px;background-color: #666;color:#fff;}
+  .select-search .four div{display: inline-block;margin-right: 5px;}
+  .four div p:first-child{margin-bottom: 4px;}
+  .select-search > #input{padding: 12px 0px;margin-left: 20px;}
+  .select-search > #input input{border: 0px;width: 60px;padding: 2px;color: #fff;background-color: #2189C0;}
+  select{background-color: #fff;}
+
+  /*.history-inquiry{width: 100px;}*/
+  .history-inquiry > .left,.history-inquiry > .right{display: inline-block;}
+  .history-inquiry a{display: inline-block;padding: 10px 25px; border: 1px solid #ccc;}
+  .history-inquiry > .left{width: 82%;}
+  .history-inquiry > .right{width: 18%;}
+  .history-inquiry > .right a{width: 100%;margin-right: 0px;}
+  .history-inquiry > .left span{display: block;text-align: center;margin-bottom: 6px;}
+  .history-inquiry > .left span:last-child{margin-bottom: 0px;}
+  .history-inquiry > .left span strong{font-size: 24px;color:#CF4B36;}
+  .history-inquiry > .left a{float: left; margin:0px 4px;color:#777;}
+  .history-inquiry > .left a:hover{border-top: 3px solid #3889C0;padding-top: 8px;}
+  .history-inquiry > .left a:first-child,.left a:last-child{font-size: 24px;padding-top: 21px;padding-bottom: 21px;padding-left: 6px;padding-right: 6px;}
+  .history-inquiry > .left a:first-child:hover,.history-inquiry >.left a:last-child:hover{border-top:1px solid #ccc;padding-top: 21px;}
+  .history-inquiry > .left a:first-child{margin-left: 0px;}
+  .history-inquiry > .right i{font-size: 36px;margin-right: 5px;}
+  .history-inquiry > .right  a{padding:23px;}
 
 
 
-        /*sidebar-nav*/
-        .userimg{padding: 20px 40px;color:#6E8096;}
-        .userimg div:first-child span{display: inline-block; float: left;}
-        .userimg div:first-child span:last-child{padding:25px;color:#fff;font-weight: bold;}
-        .userimg div:last-child span{padding: 0px 20px; float: left;}
-        .userimg div:last-child span:first-child{border-right: 1px solid #666;}
-        .userimg div:last-child{margin: 20px 0px;}
-        .sidebar-nav{width: 240px; height: 1100px;background-color: #2B2E3D;}
-        .sidebar-nav{color: #6D7F95;}
-        .sidebar-nav section{height: 140px;}
-        .nav{padding: 0;}
-        .nav a{color:#6E8096;padding:10px 0px;display: inline-block;}
-        .nav a i{margin-right: 4px;}
-        .native{background-color: #373D4D;}
-        .native > a:first-child{color: #fff !important; }
-        .native-top{padding: 10px 0px 10px 40px ;}
-        .native ul{padding-left:20px;}
-
-
-        /*main*/
-        main{position: absolute;left:240px;right: 0px;background-color: #EEE;}
-        main .top{padding:10px 0px 10px 20px;color:#999;background-color: #fff;}
-        main .top span{margin-right: 5px;}
-        main .top span:last-child{color:#2189C0;}
-        main .content{margin:20px 40px 20px 40px;height: 900px;}
-
-        /*search*/
-        .select-search,.history-inquiry a{background-color: #fff;margin-bottom: 20px;}
-        .select-search,.history-inquiry {width: 1000px;}
-        .select-search{padding: 20px; background-color: #fff;border: 1px solid #ccc;}
-        .select-search > .option {float: left; margin-left: 40px; color:#777;}
-        .select-search > .option:first-child span{margin-right: 8px;}
-        .relate {position: relative; padding-right: 40px;}
-        .relate p{margin-bottom: 4px;}
-        .relate p select,.four div select{width: 120px;}
-        .relate span{margin-left: 10px;}
-        .relate p:last-child{position: absolute;right: 0;top:14px;}
-        .relate p:last-child,#input input{cursor: pointer;}
-        .relate p:last-child span{display: inline-block;padding:3px 4px;background-color: #666;color:#fff;}
-        .select-search .four div{display: inline-block;margin-right: 5px;}
-        .four div p:first-child{margin-bottom: 4px;}
-        .select-search > #input{padding: 12px 0px;margin-left: 20px;}
-        .select-search > #input input{border: 0px;width: 60px;padding: 2px;color: #fff;background-color: #2189C0;}
-        select{background-color: #fff;}
-
-        /*.history-inquiry{width: 100px;}*/
-        .history-inquiry > .left,.history-inquiry > .right{display: inline-block;}
-        .history-inquiry a{display: inline-block;padding: 10px 25px; border: 1px solid #ccc;}
-        .history-inquiry > .left{width: 81%;}
-        .history-inquiry > .right{width: 18.66666666666%;}
-        .history-inquiry > .right a{width: 100%;margin-right: 0px;}
-        .history-inquiry > .left span{display: block;text-align: center;margin-bottom: 6px;}
-        .history-inquiry > .left span:last-child{margin-bottom: 0px;}
-        .history-inquiry > .left span strong{font-size: 24px;color:#CF4B36;}
-        .history-inquiry > .left a{float: left; margin:0px 4px; color: #000;}
-        .history-inquiry > .left a:hover{border-top: 3px solid #3889C0;padding-top: 8px;}
-        .history-inquiry > .left a:first-child,.left a:last-child{font-size: 24px;padding-top: 20px;padding-bottom: 20px;padding-left: 8px;padding-right: 8px;}
-        .history-inquiry > .left a:first-child:hover,.history-inquiry >.left a:last-child:hover{border-top:1px solid #ccc;padding-top: 20px;}
-        .history-inquiry > .left a:first-child{margin-left: 0px;}
-        .history-inquiry > .right i{font-size: 24px;margin-right: 5px;}
-        .history-inquiry > .right  a{padding:25px;}
-    </style>
+  /*statistics*/
+  .statistics{width: 100%;}
+  .statistics div{display: inline-block;width: 23%;margin-right:2.6666666%; background-color: #fff;;float: left;padding:30px 20px;border: 1px solid #ccc;position: relative;}
+  .statistics div:last-child{margin-right: 0px;}
+  .statistics div span:last-child{display: inline-block;width: 80px;height: 70px;;position: absolute;right: 20px;top:10px;}
+  .statistics div:nth-child(2){border-left: 3px solid #48B09E;}
+  .statistics div:nth-child(2) span:last-child{background-color: #48B09E;}
+  .statistics div:nth-child(3){border-left: 3px solid #3E8CC0;}
+  .statistics div:nth-child(3) span:last-child{background-color: #3E8CC0;}
+  .statistics div:nth-child(4){border-left: 3px solid #CD4C3B;}
+  .statistics div:nth-child(4) span:last-child{background-color: #CD4C3B;}
+  .statistics div:nth-child(5){border-left: 3px solid #E0CC52;}
+  .statistics div:nth-child(5) span:last-child{background-color: #E0CC52;}
+  .statistics p{margin-bottom: 5px;}
+  .statistics div span{display: block;}
+  </style>
 </head>
 <body>
 
-<header>
+  <header>
     <div class="top fix">
-        <div class="left l"><i class="fa fa-sticky-note fa-lg"></i></div>
-        <div class="right r"><span id="search" class="fix"><input type="text"><i class="fa fa-search fa-lg"></i></span> <span id="login"><i class="fa fa-user fa-lg"></i><button>登陆</button></span></div>
+      <div class="left l"><i class="fa fa-sticky-note fa-lg"></i></div>
+      <div class="right r"><span id="search" class="fix"><input type="text"><i class="fa fa-search fa-lg"></i></span> <span id="login"><i class="fa fa-user fa-lg"></i><button>登陆</button></span></div>
     </div>
-</header>
-<div class="container fix">
+  </header>
+  <div class="container fix">
     <div class="sidebar-nav l">
-        <section class="user-info">
-            <div class="userimg fix">
-                <div class="fix"><span><img src="../img/user9.jpg" alt=""></span><span>ABC123</span></div>
-                <div class="fix">
-                    <span><p>100</p><p>收藏</p></span>
-                    <span><p>313</p><p>粉丝</p></span>
-                </div>
-            </div>
-        </section>
-        <ul class="nav fix">
-            <li class="native native-top">
-                <a class='' href=""><i class="fa fa-street-view fa-lg"></i>个人报表</a>
-                <ul>
-                    <li><a  href=""><i class="fa fa-folder fa-lg"></i>文件夹1</a></li>
-                    <li class="native">
-                        <a href=""><i class="fa fa-folder fa-lg"></i>文件夹2</a>
-                        <ul>
-                            <li class="native">
-                                <a href=""><i class="fa fa-file-word-o fa-lg"></i>文档1</a>
-                            </li>
-                            <li><a href=""><i class="fa fa-file-word-o fa-lg"></i>文档1</a></li>
-                        </ul>
-                    </li>
-                    <li><a href=""><i class="fa fa-folder fa-lg"></i>文件夹3</a></li>
-                </ul>
+      <section class="user-info">
+        <div class="userimg fix">
+          <div class="fix"><span><img src="../img/user9.jpg" alt=""></span><span>ABC123</span></div>
+          <div class="fix">
+            <span><p>100</p><p>收藏</p></span>
+            <span><p>313</p><p>粉丝</p></span>
+          </div>
+        </div>
+      </section>
+      <ul class="nav fix">
+        <li class="native native-top">
+          <a class='' href=""><i class="fa fa-street-view fa-lg"></i>个人报表</a>
+          <ul>
+            <li><a  href=""><i class="fa fa-folder fa-lg"></i>文件夹1</a></li>
+            <li class="native">
+              <a href=""><i class="fa fa-folder fa-lg"></i>文件夹2</a>
+              <ul>
+                <li class="native">
+                  <a href=""><i class="fa fa-file-word-o fa-lg"></i>文档1</a>
+                </li>
+                <li><a href=""><i class="fa fa-file-word-o fa-lg"></i>文档1</a></li>
+              </ul>
             </li>
-            <li class="native-top"><a href=""><i class="fa fa-star fa-lg"></i>个人收藏</a></li>
-            <li class="native-top"><a href=""><i class="fa fa-street-view fa-lg"></i>我的分享</a></li>
-            <li class="native-top"><a href=""><i class="fa fa-file-image-o fa-lg"></i>图库</a></li>
-            <li class="native-top"><a href=""><i class="fa fa-tree fa-lg"></i>成长记录</a></li>
-            <li class="native-top"><a href=""><i class="fa fa-street-view fa-lg"></i>成长记录</a></li>
-        </ul>
+            <li><a href=""><i class="fa fa-folder fa-lg"></i>文件夹3</a></li>
+          </ul>
+        </li>
+        <li class="native-top"><a href=""><i class="fa fa-star fa-lg"></i>个人收藏</a></li>
+        <li class="native-top"><a href=""><i class="fa fa-street-view fa-lg"></i>我的分享</a></li>
+        <li class="native-top"><a href=""><i class="fa fa-file-image-o fa-lg"></i>图库</a></li>
+        <li class="native-top"><a href=""><i class="fa fa-tree fa-lg"></i>成长记录</a></li>
+        <li class="native-top"><a href=""><i class="fa fa-street-view fa-lg"></i>成长记录</a></li>
+      </ul>
     </div>
     <main class="l">
-        <div class="top">
-            <span>C站</span>
-            <span>/</span>
-            <span>个人报表</span>
-            <span>/</span>
-            <span>文件一</span>
-            <span>/</span>
-            <span>文档一</span>
+      <div class="top">
+        <span>C站</span>
+        <span>/</span>
+        <span>个人报表</span>
+        <span>/</span>
+        <span>文件一</span>
+        <span>/</span>
+        <span>文档一</span>
+      </div>
+
+      <div class="content">
+        <div class="select-search fix">
+          <div class="option">
+            <span>查询项</span>
+            <span>
+              <select class="" name="">
+                <option value="1">第一项</option>
+                <option value="1">第一项</option>
+                <option value="1">第一项</option>
+              </select>
+            </span>
+          </div>
+          <div class="option relate">
+            <p>
+              <span>买方</span>
+              <span>
+                <select class="" name="">
+                  <option value="">小A</option>
+                </select>
+              </span>
+            </p>
+            <p>
+              <span>卖方</span>
+              <span>
+                <select class="" name="">
+                  <option value="">小C</option>
+                </select>
+              </span>
+            </p>
+            <p><span>换</span></p>
+          </div>
+          <div class="option four">
+            <div>
+              <p>
+                <span>日期</span>
+                <span><input type="text" placeholder="2016-04-01"></span>
+              </p>
+              <p>
+                <span>人物</span>
+                <span>
+                  <select class="" name="">
+                    <option value="1">8天</option>
+                    <option value="2">8天</option>
+                    <option value="3">8天</option>
+                    <option value="4">8天</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+            <div>
+              <p>
+                <span>总消耗</span>
+                <span>
+                  <select class="" name="">
+                    <option value="1">10人</option>
+                  </select>
+                </span>
+              </p>
+              <p>
+                <span>成交量</span>
+                <span>
+                  <select class="" name="">
+                    <option value="1">10项</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+          </div>
+          <div class="option"id='input'><input type="button" value="搜索"></div>
         </div>
 
-        <div class="content">
-            <div class="select-search fix">
-                <div class="option">
-                    <span>查询项</span>
-                    <span>
-                        <select class="" name="">
-                            <option value="1">第一项</option>
-                            <option value="1">第一项</option>
-                            <option value="1">第一项</option>
-                        </select>
-                    </span>
-                </div>
-                <div class="option relate">
-                    <p>
-                        <span>买方</span>
-                        <span>
-                            <select class="" name="">
-                                <option value="">小A</option>
-                            </select>
-                        </span>
-                    </p>
-
-                    <p>
-                        <span>卖方</span>
-                        <span>
-                            <select class="" name="">
-                                <option value="">小C</option>
-                            </select>
-                        </span>
-                    </p>
-                    <p><span>换</span></p>
-                </div>
-                <div class="option four">
-                    <div>
-                        <p>
-                            <span>日期</span>
-                            <span><input type="text" placeholder="2016-04-01"></span>
-                        </p>
-                        <p>
-                            <span>人物</span>
-                            <span>
-                                <select class="" name="">
-                                    <option value="1">8天</option>
-                                    <option value="2">8天</option>
-                                    <option value="3">8天</option>
-                                    <option value="4">8天</option>
-                                </select>
-                            </span>
-                        </p>
-                    </div>
-                    <div>
-                        <p>
-                            <span>总消耗</span>
-                            <span>
-                                <select class="" name="">
-                                    <option value="1">10人</option>
-                                </select>
-                            </span>
-                        </p>
-                        <p>
-                            <span>成交量</span>
-                            <span>
-                                <select class="" name="">
-                                    <option value="1">10项</option>
-                                </select>
-                            </span>
-                        </p>
-                    </div>
-                </div>
-                <div class="option"id='input'><input type="button" value="搜索"></div>
-            </div>
-
-
-            <div class='history-inquiry'>
-                <div class="left fix">
-                    <a href=""><span><</span></a>
-                    <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
-                    <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
-                    <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
-                    <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
-                    <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
-                    <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
-                    <a href="">></a>
-                </div>
-                <div class="right r">
-                    <a href=""><i class="fa  fa-calendar-minus-o  fa-lg"></i>历史查询</a>
-                </div>
-            </div>
-            <div class="statistics">
-                <p>2016年4月份的统计</p>
-                <div>统计</div>
-            </div>
-            <div class="project">
-                <div>
-                    <p>第一组项目</p>
-                    <div></div>
-                </div>
-                <div>
-                    <p>第二组项目</p>
-                    <div></div>
-                </div>
-                <div>
-                    <p>日历</p>
-                    <div></div>
-                </div>
-                <div>
-                    <p>汽车行业品牌榜</p>
-                    <div></div>
-                </div>
-            </div>
+        <div class='history-inquiry'>
+          <div class="left fix">
+            <a href=""><</a>
+            <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
+            <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
+            <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
+            <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
+            <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
+            <a href=""><span>10:00 am</span><span>$<strong>1200</strong></span></a>
+            <a href="">></a>
+          </div>
+          <div class="right r">
+            <a href=""><i class="fa  fa-calendar-minus-o  fa-lg"></i>历史查询</a>
+          </div>
         </div>
+        <div class="statistics fix">
+          <p>2016年4月份的统计</p>
+          <div>
+            <span>13311</span>
+            <span>成交量</span>
+            <span></span>
+          </div>
+          <div>
+            <span>13311</span>
+            <span>成交量</span>
+            <span></span>
+          </div>
+          <div>
+            <span>13311</span>
+            <span>成交量</span>
+            <span></span>
+          </div>
+          <div>
+            <span>13311</span>
+            <span>成交量</span>
+            <span></span>
+          </div>
+        </div>
+
+        <style media="screen">
+        .project{width: 100%;margin-top: 20px;}
+        .project section{display: inline-block;margin:0px 5px 10px  0px;border: 1px solid #C8C9CE;border-radius: 5px;box-shadow: 1px 2px 3px #ccc;background-color: #fff;float: left;}
+        .project section:first-child{width: 60%;}
+        .project section p{padding: 10px;background-color: #F4F5F7;border-bottom: 1px solid #E7E8EC;  border-top-left-radius:8px;    border-top-right-radius:8px;}
+        .project div{padding:20px 0px 0px 20px;}
+        .project ul{margin: 0; padding:0;}
+        .project ul li{display: inline-block;margin-right: 5px;}
+        .project ul li a{display: inline-block;padding: 10px 20px;background-color: #EEEDF2;color:#999;border-radius: 2px;}
+        .project ul li a:first-child{border-bottom-right-radius: 0px;}
+        .project ul li a.active{background-color: #fff;border: 1px solid #ccc;border-bottom: 0px;}
+        .project-info{padding: 0px 20px 00px 20px;margin: 0px 20px 20px 20px;height:300px;border:1px solid #ccc; border-radius: 2px;border-top-left-radius: 0px;z-index: 10;}
+        </style>
+        <div class="project">
+          <section>
+            <p>第一组项目</p>
+            <div>
+                <ul>
+                  <li><a class="active" href="">项目一</a></li>
+                  <li><a href="">项目一</a></li>
+                  <li><a href="">项目一</a></li>
+                  <li><a href="">项目一</a></li>
+                  <li><a href="">项目一</a></li>
+                </ul>
+            </div>
+            <div class="project-info">
+
+            </div>
+          </section>
+          <section>
+            <p>第二组项目</p>
+            <div></div>
+          </section>
+          <section>
+            <p>日历</p>
+            <div></div>
+          </section>
+          <section>
+            <p>汽车行业品牌榜</p>
+            <div></div>
+          </section>
+        </div>
+      </div>
     </main>
-</div>
+  </div>
 
 
-    <footer>
-        <i class="fa  fa-file-word-o fa-lg"></i>
-        <i class="fa  fa-folder fa-lg"></i>
-        <i class="fa  fa-file-image-o fa-lg"></i>
-        <i class="fa  fa-calendar-minus-o  fa-lg"></i>
-        <i class="fa  fa-star  fa-lg"></i>
-        <i class="fa fa-sticky-note fa-lg"></i>
-        <i class="fa fa-user fa-lg"></i>
-        <i class="fa fa-search fa-lg"></i>
-        <i class="fa fa-street-view fa-lg"></i>
-        <i class="fa fa-tree fa-lg"></i>
+  <footer>
+    <i class="fa  fa-file-word-o fa-lg"></i>
+    <i class="fa  fa-folder fa-lg"></i>
+    <i class="fa  fa-file-image-o fa-lg"></i>
+    <i class="fa  fa-calendar-minus-o  fa-lg"></i>
+    <i class="fa  fa-star  fa-lg"></i>
+    <i class="fa fa-sticky-note fa-lg"></i>
+    <i class="fa fa-user fa-lg"></i>
+    <i class="fa fa-search fa-lg"></i>
+    <i class="fa fa-street-view fa-lg"></i>
+    <i class="fa fa-tree fa-lg"></i>
 
-    </footer>
+  </footer>
 </body>
 </html>

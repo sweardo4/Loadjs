@@ -22,6 +22,7 @@
             margin: 10px 10px 0px 0px;
             cursor: pointer;
         }
+        #err{color:red;}
     </style>
 </head>
 
@@ -31,6 +32,7 @@
             <h1>模拟队列</h1>
         </div>
         <div class="row">
+            <div class=" col-md-12" id = 'err'>错误信息</div>
             <div class="col-md-12">
                 <input type="text" id='aqi-input'>
                 <input type="button" value='左侧入' id='leftadd'>
@@ -46,46 +48,69 @@
         </div>
     </div>
 
-<script type="text/javascript">
-     var value = document.getElementById('aqi-input'),
-         leftadd = document.getElementById('leftadd'),
-         rightadd = document.getElementById('rightadd'),
-         leftdel = document.getElementById('leftdel'),
-         rightdel = document.getElementById('rightdel'),
-         queue = document.getElementById('queue');
+    <script type="text/javascript">
+        var value = document.getElementById('aqi-input'),
+            leftadd = document.getElementById('leftadd'),
+            rightadd = document.getElementById('rightadd'),
+            leftdel = document.getElementById('leftdel'),
+            rightdel = document.getElementById('rightdel'),
+            queue = document.getElementById('queue'),
+            showe = document.getElementById('err');
+        addEvent(rightadd, 'click', function() {
+            var error = showErr(value.value);
+            if(error)return;
+            var eleSpan = document.createElement('span');
+            eleSpan.textContent = value.value;
+            queue.children[0].appendChild(eleSpan);
+        })
+        addEvent(leftadd, 'click', function() {
+            var error = showErr(value.value);
+            if(error)return;
+            var eleSpan = document.createElement('span');
+            eleSpan.textContent = value.value;
+            var firstSpan = queue.children[0].children[0];
+            queue.children[0].insertBefore(eleSpan, firstSpan)
+        })
 
-    addEvent(rightadd,'click',function(){
-        var eleSpan = document.createElement('span');
-        eleSpan.textContent=value.value;
-        queue.children[0].appendChild(eleSpan);
-    })
-    addEvent(leftadd,'click',function(){
-        var eleSpan = document.createElement('span');
-        eleSpan.textContent = value.value;
-        var firstSpan = queue.children[0].children[0];
-        queue.children[0].insertBefore(eleSpan,firstSpan)
-
-    })
-    addEvent(leftdel,'click',function(){
-            queue.children[0].firstElementChild.remove();
-    })
-
-    addEvent(rightdel,'click',function(){
-            queue.children[0].lastElementChild.remove();
-    })
-
-    addEvent(queue,'click',function(e){
-        if(e.target.nodeName == 'SPAN'){
-            e.target.remove()
+        function messageErr(value){
+            var v = parseInt(value);
+            console.log(v);
+            if(!v){
+                return '填写的不是一个数字';
+            }
+            if(v > 100 || v < 10){
+                return '数字必须大于10小于100';
+            }
         }
-    })
 
-    function addEvent(o,s,fn){
-        o.attachEvent?o.attachEvent('on'+s,fn):o.addEventListener(s,fn,false);
-        return o;
-    }
+        function showErr(value){
+            var err = messageErr(value);
+            if(err){
+                showe.textContent = err;
+                return true;
+            }else{
+                showe.textContent = '';
+            }
+        }
+        addEvent(leftdel, 'click', function() {
+            queue.children[0].firstElementChild.remove();
+        })
 
-</script>
+        addEvent(rightdel, 'click', function() {
+            queue.children[0].lastElementChild.remove();
+        })
+
+        addEvent(queue, 'click', function(e) {
+            if (e.target.nodeName == 'SPAN') {
+                e.target.remove()
+            }
+        })
+
+        function addEvent(o, s, fn) {
+            o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
+            return o;
+        }
+    </script>
 </body>
 
 </html>
