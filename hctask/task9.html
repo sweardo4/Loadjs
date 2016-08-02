@@ -274,27 +274,31 @@
         </div>
 
         <style media="screen">
-              .project{width: 100%;margin-top: 20px;}
-              .project section{display: inline-block;margin:0px 5px 10px  0px;width: 40%;height: 200px;border: 1px solid #C8C9CE;border-radius: 5px;box-shadow: 1px 2px 3px #ccc;background-color: #fff;float: left;}
-              .project section p{padding: 10px;background-color: #F4F5F7;border-bottom: 1px solid #E7E8EC;  border-top-left-radius:8px;    border-top-right-radius:8px;}
-              .project div{padding:20px;}
-              .project ul{margin: 0; padding:0;}
-                .project ul li{display: inline-block;}
-                .project ul li a{display: inline-block;padding: 10px 15px;background-color: #EEEDF2;}
+        .project{width: 100%;margin-top: 20px;}
+        .project section{display: inline-block;margin:0px 5px 10px  0px;border: 1px solid #C8C9CE;border-radius: 5px;box-shadow: 1px 2px 3px #ccc;background-color: #fff;float: left;}
+        .project section:first-child{width: 60%;}
+        .project section p{padding: 10px;background-color: #F4F5F7;border-bottom: 1px solid #E7E8EC;  border-top-left-radius:8px;    border-top-right-radius:8px;}
+        .project div{padding:20px 0px 0px 20px;}
+        .project ul{margin: 0; padding:0;}
+        .project ul li{display: inline-block;margin-right: 5px;}
+        .project ul li a{display: inline-block;padding: 10px 20px;background-color: #EEEDF2;color:#999;border-radius: 2px;}
+        .project ul li a:first-child{border-bottom-right-radius: 0px;}
+        .project ul li a.active{background-color: #fff;border: 1px solid #ccc;border-bottom: 0px;}
+        .project-info{padding: 0px 20px 00px 20px;margin: 0px 20px 20px 20px;height:300px;border:1px solid #ccc; border-radius: 2px;border-top-left-radius: 0px;z-index: 10;}
         </style>
         <div class="project">
           <section>
             <p>第一组项目</p>
             <div>
                 <ul>
-                  <li><a href="">项目一</a></li>
+                  <li><a class="active" href="">项目一</a></li>
                   <li><a href="">项目一</a></li>
                   <li><a href="">项目一</a></li>
                   <li><a href="">项目一</a></li>
                   <li><a href="">项目一</a></li>
                 </ul>
             </div>
-            <div>
+            <div class="project-info">
 
             </div>
           </section>
