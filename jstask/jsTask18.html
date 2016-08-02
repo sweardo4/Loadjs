@@ -22,7 +22,10 @@
             margin: 10px 10px 0px 0px;
             cursor: pointer;
         }
-        #err{color:red;}
+
+        #err {
+            color: red;
+        }
     </style>
 </head>
 
@@ -32,7 +35,7 @@
             <h1>模拟队列</h1>
         </div>
         <div class="row">
-            <div class=" col-md-12" id = 'err'></div>
+            <div class=" col-md-12" id='err'></div>
             <div class="col-md-12 t-btn">
                 <input type="text" id='aqi-input'>
                 <input type="button" value='左侧入' id='leftadd'>
@@ -57,84 +60,93 @@
             rightdel = document.getElementById('rightdel'),
             queue = document.getElementById('queue'),
             showe = document.getElementById('err'),
-            tBtn  = document.querySelectorAll('.t-btn');
-        function messageErr(value){
-            var v = parseInt(value);
+            tBtn = document.querySelectorAll('.t-btn');
+
+        function messageErr(value) {
+            console.log(value)
+            var v;
+            value == null || value.nodeName == 'SPAN' ? v = value : v = parseInt(value);
+            // var v = parseInt(value);
             console.log(v);
-            if(v == null){
-              return '你还没添加数字';
+            if (v == null) {
+                return '你还没添加数字';
             }
-            if(!v){
+            if (!v) {
                 return '填写的不是一个数字';
             }
-            if(v > 100 || v < 10){
+            if (v > 100 || v < 10) {
                 return '数字必须大于10小于100';
             }
         }
 
-        function showErr(value){
+        function showErr(value) {
+
             var err = messageErr(value);
-            if(err){
+            if (err) {
                 showe.textContent = err;
                 return true;
-            }else{
+            } else {
                 showe.textContent = '';
             }
         }
 
-        addEvent(tBtn[0],'click',function(e){
-          var id = e.target.id;
-          console.log(this)
-          function aqi(e){
-            e.target.value = '';
-          }
-          function leftAdd(){
-            var error = showErr(value.value);
-            if(error)return;
-            var eleSpan = document.createElement('span');
-            eleSpan.textContent = value.value;
-            var firstSpan = queue.children[0].children[0];
-            queue.children[0].insertBefore(eleSpan, firstSpan)
-          }
-          function rightAdd(){
-            var error = showErr(value.value);
-            if(error)return;
-            var eleSpan = document.createElement('span');
-            eleSpan.textContent = value.value;
-            queue.children[0].appendChild(eleSpan);
-          }
-          function rightDel(){
-            var last = queue.children[0].lastElementChild;
-            var error = showErr(value);
-            if(error)return;
-            queue.children[0].lastElementChild.remove();
-          }
+        addEvent(tBtn[0], 'click', function(e) {
+            var id = e.target.id;
+            console.log(this)
 
-          function leftDel(){
-            var last = queue.children[0].lastElementChild;
-            var error = showErr(value);
-            if(error)return;
-            queue.children[0].firstElementChild.remove();
-          }
+            function aqi(e) {
+                e.target.value = '';
+            }
 
-          switch (id) {
-            case 'aqi-input':
-            aqi(e);
-            break;
-            case 'leftadd':
-            leftAdd();
-            break;
-            case 'rightadd':
-            rightAdd();
-            break;
-            case 'leftdel':
-            leftDel();
-            break;
-            case 'rightdel':
-            rightDel();
-            break;
-            default:
-          }
+            function leftAdd() {
+                var error = showErr(value.value);
+                if (error) return;
+                var eleSpan = document.createElement('span');
+                eleSpan.textContent = value.value;
+                var firstSpan = queue.children[0].children[0];
+                queue.children[0].insertBefore(eleSpan, firstSpan)
+            }
+
+            function rightAdd() {
+                var error = showErr(value.value);
+                if (error) return;
+                var eleSpan = document.createElement('span');
+                eleSpan.textContent = value.value;
+                queue.children[0].appendChild(eleSpan);
+            }
+
+            function rightDel() {
+                var last = queue.children[0].lastElementChild;
+                var error = showErr(last);
+                if (error) return;
+                last.remove();
+            }
+
+            function leftDel() {
+                var first = queue.children[0].firstElementChild;
+                var error = showErr(first);
+                if (error) return;
+                first.remove();
+            }
+
+            switch (id) {
+                case 'aqi-input':
+                    aqi(e);
+                    break;
+                case 'leftadd':
+                    leftAdd();
+                    break;
+                case 'rightadd':
+                    rightAdd();
+                    break;
+                case 'leftdel':
+                    leftDel();
+                    break;
+                case 'rightdel':
+                    rightDel();
+                    break;
+                default:
+            }
         })
         addEvent(queue, 'click', function(e) {
             if (e.target.nodeName == 'SPAN') {
