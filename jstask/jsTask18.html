@@ -32,13 +32,14 @@
             <h1>模拟队列</h1>
         </div>
         <div class="row">
-            <div class=" col-md-12" id = 'err'>错误信息</div>
-            <div class="col-md-12">
+            <div class=" col-md-12" id = 'err'></div>
+            <div class="col-md-12 t-btn">
                 <input type="text" id='aqi-input'>
                 <input type="button" value='左侧入' id='leftadd'>
                 <input type="button" value='右侧入' id='rightadd'>
                 <input type="button" value='左侧出' id='leftdel'>
                 <input type="button" value='右侧出' id='rightdel'>
+                <input type="button" value='重新排序' id='resort'>
             </div>
         </div>
 
@@ -55,26 +56,14 @@
             leftdel = document.getElementById('leftdel'),
             rightdel = document.getElementById('rightdel'),
             queue = document.getElementById('queue'),
-            showe = document.getElementById('err');
-        addEvent(rightadd, 'click', function() {
-            var error = showErr(value.value);
-            if(error)return;
-            var eleSpan = document.createElement('span');
-            eleSpan.textContent = value.value;
-            queue.children[0].appendChild(eleSpan);
-        })
-        addEvent(leftadd, 'click', function() {
-            var error = showErr(value.value);
-            if(error)return;
-            var eleSpan = document.createElement('span');
-            eleSpan.textContent = value.value;
-            var firstSpan = queue.children[0].children[0];
-            queue.children[0].insertBefore(eleSpan, firstSpan)
-        })
-
+            showe = document.getElementById('err'),
+            tBtn  = document.querySelectorAll('.t-btn');
         function messageErr(value){
             var v = parseInt(value);
             console.log(v);
+            if(v == null){
+              return '你还没添加数字';
+            }
             if(!v){
                 return '填写的不是一个数字';
             }
@@ -92,14 +81,61 @@
                 showe.textContent = '';
             }
         }
-        addEvent(leftdel, 'click', function() {
-            queue.children[0].firstElementChild.remove();
-        })
 
-        addEvent(rightdel, 'click', function() {
+        addEvent(tBtn[0],'click',function(e){
+          var id = e.target.id;
+          console.log(this)
+          function aqi(e){
+            e.target.value = '';
+          }
+          function leftAdd(){
+            var error = showErr(value.value);
+            if(error)return;
+            var eleSpan = document.createElement('span');
+            eleSpan.textContent = value.value;
+            var firstSpan = queue.children[0].children[0];
+            queue.children[0].insertBefore(eleSpan, firstSpan)
+          }
+          function rightAdd(){
+            var error = showErr(value.value);
+            if(error)return;
+            var eleSpan = document.createElement('span');
+            eleSpan.textContent = value.value;
+            queue.children[0].appendChild(eleSpan);
+          }
+          function rightDel(){
+            var last = queue.children[0].lastElementChild;
+            var error = showErr(value);
+            if(error)return;
             queue.children[0].lastElementChild.remove();
-        })
+          }
 
+          function leftDel(){
+            var last = queue.children[0].lastElementChild;
+            var error = showErr(value);
+            if(error)return;
+            queue.children[0].firstElementChild.remove();
+          }
+
+          switch (id) {
+            case 'aqi-input':
+            aqi(e);
+            break;
+            case 'leftadd':
+            leftAdd();
+            break;
+            case 'rightadd':
+            rightAdd();
+            break;
+            case 'leftdel':
+            leftDel();
+            break;
+            case 'rightdel':
+            rightDel();
+            break;
+            default:
+          }
+        })
         addEvent(queue, 'click', function(e) {
             if (e.target.nodeName == 'SPAN') {
                 e.target.remove()
