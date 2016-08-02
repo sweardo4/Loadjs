@@ -70,7 +70,7 @@
             if (v == null) {
                 return '你还没添加数字';
             }
-            if (!v) {
+            if (isNaN(v)) {
                 return '填写的不是一个数字';
             }
             if (v > 100 || v < 10) {
