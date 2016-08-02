@@ -62,12 +62,11 @@
             showe = document.getElementById('err'),
             tBtn = document.querySelectorAll('.t-btn');
 
+
+        // 根据值返回错误信息
         function messageErr(value) {
-            console.log(value)
             var v;
             value == null || value.nodeName == 'SPAN' ? v = value : v = parseInt(value);
-            // var v = parseInt(value);
-            console.log(v);
             if (v == null) {
                 return '你还没添加数字';
             }
@@ -78,7 +77,7 @@
                 return '数字必须大于10小于100';
             }
         }
-
+        // 显示错误
         function showErr(value) {
 
             var err = messageErr(value);
@@ -90,9 +89,9 @@
             }
         }
 
+        // 绑定事件
         addEvent(tBtn[0], 'click', function(e) {
             var id = e.target.id;
-            console.log(this)
 
             function aqi(e) {
                 e.target.value = '';
@@ -148,12 +147,13 @@
                 default:
             }
         })
+        // 元素事件
         addEvent(queue, 'click', function(e) {
             if (e.target.nodeName == 'SPAN') {
                 e.target.remove()
             }
         })
-
+        // 事件绑定
         function addEvent(o, s, fn) {
             o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
             return o;
