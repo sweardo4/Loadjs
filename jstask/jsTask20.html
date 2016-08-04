@@ -6,9 +6,11 @@
 	<title>筛选输入内容</title>
 
 	<link rel="stylesheet" href="../css/grid.css" media="screen" title="no title" charset="utf-8">
+	<style media="screen">
+		.container{margin-top: 20px;}
+	</style>
 </head>
 <body>
-
 <div class="container">
 	<div class="row">
 		<textarea name="name" rows="8" cols="100" placeholder="输入内容" id='content'></textarea>
@@ -24,16 +26,15 @@ var btn = document.getElementById('confirm'),
  	textarea  = document.getElementById('content'),
 	tfilter  = document.getElementById('tfilter');
 
-
 addEvent(btn,'click',function(){
-	console.log(textarea.value)
-	console.log(tfilter.value)
+	stringFilter(textarea.value);
 })
 
-
-
-
-
+var stringFilter = function(str){
+	console.log(str)
+	var newStr = str.replace(/a/g,'!!')
+	console.log(newStr)
+}
 
 
 function addEvent(o,s,fn){
