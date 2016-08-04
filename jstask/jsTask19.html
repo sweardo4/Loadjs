@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>筛选输入内容</title>
+
+	<link rel="stylesheet" href="../css/grid.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+
+<div class="container">
+	<div class="row">
+		<textarea name="name" rows="8" cols="100" placeholder="输入内容" id='content'></textarea>
+	</div>
+	<div class="row">
+		<input type="text" placeholder="要筛选的内容" id='tfilter'>
+		<input type="button" id='confirm' value='筛选'>
+	</div>
+</div>
+<script>
+
+var btn = document.getElementById('confirm'),
+ 	textarea  = document.getElementById('content'),
+	tfilter  = document.getElementById('tfilter');
+
+
+addEvent(btn,'click',function(){
+	console.log(textarea.value)
+	console.log(tfilter.value)
+})
+
+
+
+
+
+
+
+function addEvent(o,s,fn){
+	o.attachEvent ? o.attachEvent('on'+s,fn) : o.addEventListener(s,fn,false);
+	return o;
+}
+</script>
+</body>
+</html>

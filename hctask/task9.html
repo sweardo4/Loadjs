@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <title>实现一个复杂的页面</title>
   <link href="../css/font-awesome.css" rel="stylesheet">
+
   <style media="screen">
 
   /*base*/
@@ -36,7 +38,7 @@
   .userimg div:last-child span{padding: 0px 20px; float: left;}
   .userimg div:last-child span:first-child{border-right: 1px solid #666;}
   .userimg div:last-child{margin: 20px 0px;}
-  .sidebar-nav{width: 240px; height: 1100px;background-color: #2B2E3D;}
+  .sidebar-nav{width: 240px; height: 1300px;background-color: #2B2E3D;}
   .sidebar-nav{color: #6D7F95;}
   .sidebar-nav section{height: 140px;}
   .nav{padding: 0;}
@@ -121,7 +123,7 @@
   .project ul li a.active{background-color: #fff;border: 1px solid #ccc;border-bottom: 1px solid #fff;}
   .project-info{padding:30px !important;margin: 0px 20px 20px 20px;border:1px solid #ccc; border-radius: 2px;border-top-left-radius: 0px;z-index: 10;}
   .project-info td{padding: 10px 20px;border: 1px solid #888;color:#888;}
-  .project-info table{border-collapse: collapse;}
+  .project-info table,.pro4 div table{border-collapse: collapse;}
 
   .project2{width: 39%;margin-right: 0px !important;}
   .project2 div.info{padding-left: 50px;padding-top: 20px;padding-bottom: 20px;}
@@ -133,8 +135,17 @@
   .foder-search{margin: 0px 20px 14px 0px;border-top: 1px solid #eee;padding: 10px 0px;position: relative;}
   .foder-search input[type='button'],.select-search > #input input{background-color: #3D8CBF;border: none;color:#fff;padding: 5px 10px;}
   .foder-search span:last-child{top: 8px;right: 0px;position: absolute;}
-  .pro3,.pro4{height: 280px;width: 49.5%;}
+
+
+  .pro3{width: 39.5%;}
+  .pro4{width: 59.5%;}
   .pro4{margin-right: 0px !important;}
+  .pro4 div{padding: 20px  50px;}
+  .pro4 div td{padding: 8px 25px; border: 1px solid #999; text-align: center;}
+  .pro4-front{width: 160px;background-color: green;border-top-left-radius: 3px;border-bottom-left-radius: 3px;}
+  .pro4-end,.pro4-front{height: 5px;display: inline-block;}
+  .pro4-end{width: 60px;background-color: #eee;border-top-right-radius: 3px; border-bottom-right-radius: 3px;}
+
   </style>
 </head>
 <body>
@@ -384,13 +395,66 @@
             </div>
 
           </section>
+          <style media="screen">
+
+          </style>
+
           <section class="pro3">
             <p class="top">日历</p>
             <div></div>
           </section>
+
           <section class="pro4">
             <p class="top">汽车行业品牌榜</p>
-            <div></div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>排名</td>
+                            <td>品牌</td>
+                            <td>搜索指数</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>大众</td>
+                            <td><span>12309487</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>丰田</td>
+                            <td><span>12309302</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>奥迪</td>
+                            <td><span>12309302</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>福特</td>
+                            <td><span>12309302</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>宝马</td>
+                            <td><span>12309302</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>现代</td>
+                            <td><span>12309302</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>起亚</td>
+                            <td><span>12309302</span><i class="pro4-front"></i><i class="pro4-end"></i></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
           </section>
         </div>
       </div>

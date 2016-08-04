@@ -10,17 +10,20 @@
             border: none;
         }
 
-        #queue span {
-            width: 30px;
-            height: 30px;
+        #queue > div >span {
+            width: 15px;
             color: #fff;
             background-color: red;
             display: inline-block;
             line-height: 30px;
             text-align: center;
             font-size: 20px;
-            margin: 10px 10px 0px 0px;
+            margin: 5px 5px 0px 0px;
             cursor: pointer;
+        }
+        #queue > div > span:hover{
+            background-color:green;
+            height: 100px;
         }
 
         #err {
@@ -53,111 +56,119 @@
     </div>
 
     <script type="text/javascript">
-        var value = document.getElementById('aqi-input'),
-            leftadd = document.getElementById('leftadd'),
-            rightadd = document.getElementById('rightadd'),
-            leftdel = document.getElementById('leftdel'),
-            rightdel = document.getElementById('rightdel'),
-            queue = document.getElementById('queue'),
-            showe = document.getElementById('err'),
-            tBtn = document.querySelectorAll('.t-btn');
+        ! function(window) {
+
+            var value = document.getElementById('aqi-input'),
+                leftadd = document.getElementById('leftadd'),
+                rightadd = document.getElementById('rightadd'),
+                leftdel = document.getElementById('leftdel'),
+                rightdel = document.getElementById('rightdel'),
+                queue = document.getElementById('queue'),
+                showe = document.getElementById('err'),
+                tBtn = document.querySelectorAll('.t-btn'),
+                num = 0; //计数器
+
+            var addEvent = window.addEvent = function(o, s, fn) {
+                    o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
+                    return o;
+                }
+                // 根据值返回错误信息
+            function messageErr(value) {
+                var v;
+                value == null || value.nodeName == 'SPAN' ? v = value : v = parseInt(value);
+                if (v == null) {
+                    return '你还没添加数字';
+                }
+                if (!v) {
+                    return '填写的不是一个数字';
+                }
+                if (v > 100 || v < 10) {
+                    return '数字必须大于10小于100';
+                }
+            }
+            // 显示错误
+            function showErr(value) {
+
+                var err = messageErr(value);
+                if (err) {
+                    showe.textContent = err;
+                    return true;
+                } else {
+                    showe.textContent = '';
+                }
+            }
 
 
-        // 根据值返回错误信息
-        function messageErr(value) {
-            var v;
-            value == null || value.nodeName == 'SPAN' ? v = value : v = parseInt(value);
-            if (v == null) {
-                return '你还没添加数字';
-            }
-            if (isNaN(v)) {
-                return '填写的不是一个数字';
-            }
-            if (v > 100 || v < 10) {
-                return '数字必须大于10小于100';
-            }
-        }
-        // 显示错误
-        function showErr(value) {
+            // 绑定事件
+            addEvent(tBtn[0], 'click', function(e) {
+                    var leng = queue.children[0].children.length;
+                    var id = e.target.id;
+                    console.log(leng)
+                    if(leng >= 60){alert('您不能再添加了');return;}
+                    function aqi(e) {
+                        e.target.value = '';
+                    }
 
-            var err = messageErr(value);
-            if (err) {
-                showe.textContent = err;
-                return true;
-            } else {
-                showe.textContent = '';
-            }
-        }
+                    function leftAdd() {
+                        var error = showErr(value.value);
+                        if (error) return;
+                        var eleSpan = document.createElement('span');
+                        eleSpan.style.height = value.value+'px';
+                        var firstSpan = queue.children[0].children[0];
+                        queue.children[0].insertBefore(eleSpan, firstSpan)
+                    }
 
-        // 绑定事件
-        addEvent(tBtn[0], 'click', function(e) {
-            var id = e.target.id;
+                    function rightAdd() {
+                        var error = showErr(value.value);
+                        if (error) return;
+                        var eleSpan = document.createElement('span');
+                        eleSpan.style.height = value.value+'px';
+                        queue.children[0].appendChild(eleSpan);
 
-            function aqi(e) {
-                e.target.value = '';
-            }
+                    }
 
-            function leftAdd() {
-                var error = showErr(value.value);
-                if (error) return;
-                var eleSpan = document.createElement('span');
-                eleSpan.textContent = value.value;
-                var firstSpan = queue.children[0].children[0];
-                queue.children[0].insertBefore(eleSpan, firstSpan)
-            }
+                    function rightDel() {
+                        var last = queue.children[0].lastElementChild;
+                        var error = showErr(last);
+                        if (error) return;
+                        last.remove();
+                    }
 
-            function rightAdd() {
-                var error = showErr(value.value);
-                if (error) return;
-                var eleSpan = document.createElement('span');
-                eleSpan.textContent = value.value;
-                queue.children[0].appendChild(eleSpan);
-            }
+                    function leftDel() {
+                        var first = queue.children[0].firstElementChild;
+                        var error = showErr(first);
+                        if (error) return;
+                        first.remove();
+                    }
 
-            function rightDel() {
-                var last = queue.children[0].lastElementChild;
-                var error = showErr(last);
-                if (error) return;
-                last.remove();
-            }
+                    switch (id) {
+                        case 'aqi-input':
+                            aqi(e);
+                            break;
+                        case 'leftadd':
+                            leftAdd();
+                            break;
+                        case 'rightadd':
+                            rightAdd();
+                            break;
+                        case 'leftdel':
+                            leftDel();
+                            break;
+                        case 'rightdel':
+                            rightDel();
+                            break;
+                        default:
+                    }
+                })
+                // 元素事件
+            addEvent(queue, 'click', function(e) {
+                    if (e.target.nodeName == 'SPAN') {
+                        e.target.remove()
+                    }
+                })
+                // 事件绑定
 
-            function leftDel() {
-                var first = queue.children[0].firstElementChild;
-                var error = showErr(first);
-                if (error) return;
-                first.remove();
-            }
-
-            switch (id) {
-                case 'aqi-input':
-                    aqi(e);
-                    break;
-                case 'leftadd':
-                    leftAdd();
-                    break;
-                case 'rightadd':
-                    rightAdd();
-                    break;
-                case 'leftdel':
-                    leftDel();
-                    break;
-                case 'rightdel':
-                    rightDel();
-                    break;
-                default:
-            }
-        })
-        // 元素事件
-        addEvent(queue, 'click', function(e) {
-            if (e.target.nodeName == 'SPAN') {
-                e.target.remove()
-            }
-        })
-        // 事件绑定
-        function addEvent(o, s, fn) {
-            o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
-            return o;
-        }
+        }(window)
     </script>
 </body>
 
