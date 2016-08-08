@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -7,40 +8,58 @@
 
 	<link rel="stylesheet" href="../css/grid.css" media="screen" title="no title" charset="utf-8">
 	<style media="screen">
-		.container{margin-top: 20px;}
+		.container {
+			margin-top: 20px;
+		}
+
+		span {
+			background-color: red;
+			color: #fff;
+		}
 	</style>
 </head>
+
 <body>
-<div class="container">
-	<div class="row">
-		<textarea name="name" rows="8" cols="100" placeholder="输入内容" id='content'></textarea>
+	<div class="container">
+		<h1>对输入的内容进行高亮匹配</h1>
+		<div class="row">
+			<textarea name="name" rows="8" cols="60" placeholder="输入内容" id='content'></textarea>
+		</div>
+		<div class="row">
+			<input type="text" placeholder="要筛选的内容" id='tfilter'>
+			<input type="button" id='confirm' value='筛选'>
+		</div>
+		<h2>显示区域</h2>
+		<div id="showStr">
+
+		</div>
 	</div>
-	<div class="row">
-		<input type="text" placeholder="要筛选的内容" id='tfilter'>
-		<input type="button" id='confirm' value='筛选'>
-	</div>
-</div>
-<script>
+	<script>
+		var btn = document.getElementById('confirm'),
+			textarea = document.getElementById('content'),
+			tfilter = document.getElementById('tfilter'),
+			showStr = document.getElementById('showStr');
 
-var btn = document.getElementById('confirm'),
- 	textarea  = document.getElementById('content'),
-	tfilter  = document.getElementById('tfilter');
+		addEvent(btn, 'click', function() {
+			//<pre>为了原样显示内容
+			showStr.innerHTML ='<pre>' + stringFilter(textarea.value) +'</pre>';
+		})
+		// 返回匹配的结果
+		var stringFilter = function(str) {
+				var reg = returnStr(tfilter)
+				var replaceStr = '<span>' + tfilter.value + '</span>'
+				return str.replace(reg, replaceStr)
+			}
+		// 吧输入内容创建一个正则
+		function returnStr(ele) {
+			return new RegExp(ele.value, 'g');
+		}
 
-addEvent(btn,'click',function(){
-	stringFilter(textarea.value);
-})
-
-var stringFilter = function(str){
-	console.log(str)
-	var newStr = str.replace(/a/g,'!!')
-	console.log(newStr)
-}
-
-
-function addEvent(o,s,fn){
-	o.attachEvent ? o.attachEvent('on'+s,fn) : o.addEventListener(s,fn,false);
-	return o;
-}
-</script>
+		function addEvent(o, s, fn) {
+			o.attachEvent ? o.attachEvent('on' + s, fn) : o.addEventListener(s, fn, false);
+			return o;
+		}
+	</script>
 </body>
+
 </html>
